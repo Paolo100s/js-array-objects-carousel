@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    margin: 100px auto;
+    display: flex;
+    align-items: center;
+    width: 70vw;
+}
+
+button {
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.item {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.opacity {
+    opacity: 50%;
+}
+
+#container div {
+    width: 800px;
+    height: 400px;
+    /* display: none; */
+}
+
+#container div img {
+    width: 100%;
+    height: 100%;
+}
+
+#side_bar div {
+    width: 100px;
+}
+
+#side_bar div img {
+    width: 100%;
+}
+
+img {
+    object-fit: contain;
+}
