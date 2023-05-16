@@ -85,7 +85,7 @@ const btnPrevious = document.getElementById("previous_img");
 const btnNext = document.getElementById("next_img");
 
 // Array immagini
-const arrayCard = document.querySelectorAll('#container img');
+const arrayCard = document.querySelectorAll('#container .item');
 const arrayCardSide = document.querySelectorAll('#side_bar img');
 
 
@@ -94,11 +94,11 @@ let imagePosition = 0;
 btnNext.addEventListener('click', next);
 btnPrevious.addEventListener('click', previous);
 
-console.log(btnNext, btnPrevious);
+// console.log(btnNext, btnPrevious);
 
 // funzioni
 function next() {
-    if (imagePosition < (arrayCard -1)) {
+    if (imagePosition < (arrayCard.length -1)) {
 
         arrayCard[imagePosition].classList.remove('active');
         arrayCardSide[imagePosition].classList.remove('selected');
