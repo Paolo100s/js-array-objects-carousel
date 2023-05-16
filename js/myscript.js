@@ -49,12 +49,12 @@ images.forEach(element => {
     const card = 
     `
     <div class="item">
-        <div class="img">
+        <div class="image">
             <img src="${element.image}" alt="immagine">
         </div>
         <div class="info">
-            <h4>${title}</h4>
-            <p>${text}</p>
+            <h4>${element.title}</h4>
+            <p>${element.text}</p>
         </div>
     </div>
     `;
@@ -72,3 +72,73 @@ images.forEach(element => {
     sidebar.innerHTML += cardSide;
 });
 
+// Assegnazione classi
+const activeCard = document.querySelector('#container .item');
+activeCard.classList.add('active');
+
+// const activeCardSide = document.querySelector('#side_bar div');
+// activeCardSide.classList.add('selected');
+
+
+// Button
+const btnPrevious = document.getElementById("previous_img");
+const btnNext = document.getElementById("next_img");
+
+// Array immagini
+const arrayCard = document.querySelectorAll('#container img');
+const arrayCardSide = document.querySelectorAll('#side_bar img');
+
+
+// Scorrimento
+let imagePosition = 0;
+btnNext.addEventListener('click', next);
+btnPrevious.addEventListener('click', previous);
+
+console.log(btnNext, btnPrevious);
+
+// funzioni
+function next() {
+    if (imagePosition < (arrayCard -1)) {
+
+        arrayCard[imagePosition].classList.remove('active');
+        arrayCardSide[imagePosition].classList.remove('selected');
+
+        imagePosition++;
+
+        arrayCard[imagePosition].classList.add('active');
+        arrayCardSide[imagePosition].classList.add('selected');
+
+    } else if (imagePosition === (arrayCard.length - 1)) {
+
+        arrayCard[imagePosition].classList.remove('active');
+        arrayCardSide[imagePosition].classList.remove('selected');
+
+        imagePosition = 0;
+
+        arrayCard[imagePosition].classList.add('active');
+        arrayCardSide[imagePosition].classList.add('selected');
+    }
+};
+
+function previous() {
+    if (imagePosition > 0) {
+
+        arrayCard[imagePosition].classList.remove('active');
+        arrayCardSide[imagePosition].classList.remove('selected');
+       
+        imagePosition--;
+
+        arrayCard[imagePosition].classList.add('active');
+        arrayCardSide[imagePosition].classList.add('selected');
+
+    } else if (imagePosition === 0) {
+
+        arrayCard[imagePosition].classList.remove('active');
+        arrayCardSide[imagePosition].classList.remove('selected');
+
+        imagePosition = arrayCard.length - 1;
+
+        arrayCard[imagePosition].classList.add('active');
+        arrayCardSide[imagePosition].classList.add('selected');
+    }
+}

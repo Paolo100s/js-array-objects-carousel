@@ -51,3 +51,7 @@ button {
 img {
     object-fit: contain;
 }
+
+.selected {
+    border: 2px solid gold;
+}
