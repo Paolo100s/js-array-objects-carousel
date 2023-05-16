@@ -1,84 +1,74 @@
-// variabili globali
+// Dato un array di oggetti letterali con:
+// - url dell’immagine
+// - titolo
+// - descrizione
+// Creare un carosello come nella foto allegata.
+// Milestone 0:
+// Come nel primo carosello realizzato, focalizziamoci prima sulla creazione del markup statico: costruiamo il container e inseriamo l’immagine grande in modo da poter stilare lo slider.
+// Milestone 1:
+// Ora rimuoviamo i contenuti statici e usiamo l’array di oggetti letterali per popolare dinamicamente il carosello.
+// Al click dell’utente sulle frecce verso sopra e sotto, l’immagine attiva diventerà visibile e dovremo aggiungervi titolo e testo.
+// Milestone 2:
+// Aggiungere il **ciclo infinito** del carosello.
+// Ovvero se l’immagine attiva è la prima e l’utente clicca la freccia verso sopra, l’immagine che deve attivarsi sarà l’ultima e viceversa per l’ultima miniatura se l’utente clicca la freccia verso sotto.
 
-const image = ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp"];
-const btnPrevious = document.getElementById("previous_img");
-const btnNext = document.getElementById("next_img");
 
-// creazione container e side
-for (let i=0; i < image.length; i++) {
-
-    const cicleImage = image[i];
-
-    // principale
-    const card = document.createElement('div');
-
-    card.classList.add("item");
-
-    card.innerHTML = `<img src="img/${cicleImage}" alt="immagine">`;
-
-    document.getElementById("container").append(card);
-
-    // side
-    const cardSide = document.createElement('div');
-
-    cardSide.innerHTML =
-    `<div class="opacity"></div>
-    <img src="img/${cicleImage}" alt="immagine">`;
-
-    document.getElementById("side_bar").append(cardSide);
-}
-
-// selezione elementi
-let imagePosition = 0;
-
-    // immagini principali
-    const containerImage = document.querySelectorAll("#container div");
-
-    containerImage[imagePosition].classList.add("active");
-
-    // immagini side
-    const containerSideImage = document.querySelectorAll("#side_bar div div");
-
-    containerSideImage[imagePosition].classList.remove("opacity");
-
-// funzioni
-
-// next
-btnNext.addEventListener("click",
-    function () {
-
-        containerImage[imagePosition].classList.remove("active");
-
-        containerSideImage[imagePosition].classList.add("opacity");
-
-        if (imagePosition == containerImage.lenght - 1) {
-            imagePosition = -1;
-        }
-
-        imagePosition++;
-
-        containerImage[imagePosition].classList.add("active");
-
-        containerSideImage[imagePosition].classList.remove("opacity");
+// Array
+const images = [
+    {
+        image: 'img/01.webp',
+        title: "Marvel\\'s Spiderman Miles Morale",
+        text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
+    }, {
+        image: 'img/02.webp',
+        title: 'Ratchet & Clank: Rift Apart',
+        text: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
+    }, {
+        image: 'img/03.webp',
+        title: 'Fortnite',
+        text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
+    }, {
+        image: 'img/04.webp',
+        title: 'Stray',
+        text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
+    }, {
+        image: 'img/05.webp',
+        title: "Marvel's Avengers",
+        text: "Marvel\\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.",
     }
-)
+];
 
-// previous
-btnPrevious.addEventListener("click",
-    function () {
+// Variabili globali
+const container = document.getElementById("container");
+const sidebar = document.getElementById("side_bar");
 
-        containerImage[imagePosition].classList.remove("active");
+// Ciclo degli oggetti
+images.forEach(element => {
 
-        containerSideImage[imagePosition].classList.add("opacity");
+    // Container
+    const card = 
+    `
+    <div class="item">
+        <div class="img">
+            <img src="${element.image}" alt="immagine">
+        </div>
+        <div class="info">
+            <h4>${title}</h4>
+            <p>${text}</p>
+        </div>
+    </div>
+    `;
+    container.innerHTML += card;
 
-        if (imagePosition == 0) {
-            imagePosition = containerImage.length;
-        }
+    // Sidebar
+    const cardSide =
+    `
+    <div>
+        <img src="${element.image}" alt="sideimmagine">
+        <div class="opacity"></div>
+    </div>
+    `;
 
-        imagePosition--;
+    sidebar.innerHTML += cardSide;
+});
 
-        containerImage[imagePosition].classList.add("active");
-
-        containerSideImage[imagePosition].classList.remove("opacity");
-    }
-)
